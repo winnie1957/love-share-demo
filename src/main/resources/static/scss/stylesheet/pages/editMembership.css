@@ -1,0 +1,23 @@
+html {
+    height: 100%;
+    /* border: 1px solid red; */
+}
+body {
+    height: 100%;
+    /* border: 1px solid red; */
+}
+.sideColumn{
+    width: 13%;
+    height: fit-content;
+    /* border: 1px solid red; */
+    margin-left: 13%;
+    margin-top: 1%;
+    padding: 1%;
+}
+
+.sideSize{
+    width: 80%;
+    height: auto;
+    /* border: 1px solid red; */
+    margin-left: 2%;
+}

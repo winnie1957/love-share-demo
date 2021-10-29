@@ -1,0 +1,17 @@
+.alwaysDown{
+    position: fixed;
+    top: 94%;
+    width:100%;
+    height: 100px;
+}
+.imgShape{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+.footerButtonTopDistance{
+    margin-top: 5px;
+}
+.footerButtonRightDistance{
+    margin-right: 1%;
+}

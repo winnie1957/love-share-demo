@@ -1,0 +1,114 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Love & Share</title>
+    <!-- icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="brand/loveandshare_icon.png">
+    <!-- fontawesome v4.7 -->
+    <script src="https://use.fontawesome.com/07ac6b813c.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link th:href="@{scss/all.css}" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+<header th:insert="common/header"></header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <!-- 輪播圖 -->
+  <div id="carouselForIndex" class="carousel slide container-md" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselForIndex" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselForIndex" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../brand/indeximg_carousel1.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block mb-5 pb-5">
+          <h1 class="text-start fw-bold mb-4 text-warning">我要捐贈</h1>
+          <p class="text-start fs-4">家中有適合或閒置的物資想捐贈嗎？</br>來這裡幫它們找到適合的歸宿吧！</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../brand/indeximg_carousel2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block mb-5 pb-5">
+          <h1 class="text-start fw-bold mb-4 text-warning">我要徵求</h1>
+          <p class="text-start fs-4">只需要簡單幾個步驟，就可以立刻開始徵求需要的物資！</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselForIndex" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselForIndex" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="container">
+    <!-- 理念 -->
+    <div class="my-5">
+      <img src="../brand/index_image_0.png" class="img-fluid rounded mx-auto d-block my-5" alt="...">
+      <div class="text-center">
+        <h1>Love & Share 愛雪兒 是一個便利的物資分享平台</h1>
+        <p>希望提供「資訊正確、數量管控、搜尋便利」的特色，讓捐贈者將適合的物資捐贈到需要的單位。</br>讓社福團體能夠在 Love & Share 上提出需要的物資資訊，而一般民眾可以在此認領想捐贈的物資內容。</p>
+      </div>
+    </div>
+    <!-- 入口 -->
+    <div class="row">
+      <div class="col-lg mb-3 mx-3 p-5">
+        <img src="../brand/index_image_2.png" class="card-img-top mx-auto" alt="...">
+        <div class="mx-5 my-3 text-center">
+          <h5>我要捐贈物資</h5>
+          <p>想知道有哪些機構目前需要什麼物資？</p>
+        </div>
+        <a class="btn btn-primary w-100 rounded-pill" th:href="@{wishlist}">我要捐贈物資</a>
+      </div>
+      <div class="col-lg mb-3 mx-3 p-5">
+        <img src="../brand/index_image_1.png" class="card-img-top mx-auto" alt="...">
+        <div class="mx-5 my-3 text-center">
+          <h5>我要徵求物資</h5>
+          <p>我是有需求的社福團體，來這裡徵求吧！</p>
+        </div>
+        <a class="btn btn-primary w-100 rounded-pill" th:href="@{wish}">我要徵求物資</a>
+      </div>
+    </div>
+    <!-- 影音 -->
+    <div class="row">
+      <div class="col-lg m-3 ratio ratio-4x3">
+        <iframe class="card-img-top" src="https://www.youtube.com/embed/0tCesdn-cSw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="col-lg m-3 ratio ratio-4x3">
+        <iframe class="card-img-top" src="https://www.youtube.com/embed/a7mnUpmYajw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="col-lg m-3 ratio ratio-4x3">
+        <iframe class="card-img-top" src="https://www.youtube.com/embed/paJoxQcgqsI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+
+  </div>
+</main>
+
+<footer class="footer mt-auto py-5" th:insert="common/footer"></footer>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <!-- javascript -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script th:src="@{js/all.js}"></script>
+    <script>
+    
+    </script>
+  </body>
+</html>
