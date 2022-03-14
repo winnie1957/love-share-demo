@@ -1,13 +1,3 @@
-
-$(document).ready(function() {
-    $("header").load("../layout/header.html");
-    $("footer").load("../layout/footer.html");
-})
-$(document).ready(function() {
-    $("header").load("../../layout/header.html");
-    $("footer").load("../../layout/footer.html");
-})
-// addressSelect start
 var adrressArr =
     [
         ['請選擇縣市', '請選擇鄉鎮市區'],
@@ -39,49 +29,26 @@ var adrressArr =
         ['彰化縣', '500彰化市', '502芬園鄉', '503花壇鄉', '504秀水鄉', '505鹿港鎮', '506福興鄉', '507線西鄉', '508和美鎮', '509伸港鄉', '510員林鎮', '511社頭鄉', '512永靖鄉', '513埔心鄉', '514溪湖鎮', '515大村鄉', '516埔鹽鄉', '520田中鎮', '521北斗鎮', '522田尾鄉', '523埤頭鄉', '524溪州鄉', '525竹塘鄉', '526二林鎮', '527大城鄉', '528芳苑鄉', '530二水鄉'],
         ['澎湖縣', '880馬公市', '881西嶼鄉', '882望安鄉', '883七美鄉', '884白沙鄉', '885湖西鄉']
     ];
-var citySelect=document.getElementById("citylist"); //參數給"citylist"抓到這id標籤列
-var inner="";   //製造一個字串，以html的語法填入院的陣列
+
+//參數給"citylist"抓到這id標籤列
+var citySelect=document.getElementById("citylist");
+//製造一個字串，以html的語法填入院的陣列
+var inner="";
 for(var i=0;i<adrressArr.length;i++){
     inner=inner+'<option value=i>'+adrressArr[i][0]+'</option>';
 }
-citySelect.innerHTML=inner; //innerHTML 賦值inner給這element屬性
-function changeCity(index){ //動到"citylist"這select元素後呼叫此方法
-    var Rinner="";  //跟剛剛一樣，製造一個字串，以html的語法填入系所的陣列
+//innerHTML 賦值inner給這element屬性
+citySelect.innerHTML=inner;
+//動到"citylist"這select元素後呼叫此方法
+function changeCity(index){
+    //跟剛剛一樣，製造一個字串，以html的語法填入系所的陣列
+    var Rinner="";
     for(var i=1;i<adrressArr[index].length;i++){
         Rinner=Rinner+'<option value=i>'+adrressArr[index][i]+'</option>';
-    }  
-    var regionSelect=document.getElementById("regionlist"); //抓到"regionlist"這select元素，修改其值
+    }
+    //抓到"regionlist"這select元素，修改其值
+    var regionSelect=document.getElementById("regionlist");
     regionSelect.innerHTML=Rinner;
 }
-changeCity(document.getElementById("citylist").selectedIndex);  //這裡呼叫一次"changeCity"這方法，讓瀏覽器在讀完XML後可以直接讓資料出來
-
-// addressSelect end
-
-// show img start
-function readURL(input){
-    if(input.files && input.files[0]){  
-        var imageTagID = input.getAttribute("targetID");
-        var reader = new FileReader();
-    
-        reader.onload = function (e) {
-            var img = document.getElementById(imageTagID);
-            img.setAttribute("src", e.target.result) 
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function myFunction() { //還不會動 待修
-    var x = document.getElementById(restrictImg);
-    x.setAttribute("width","300");
-    x.setAttribute("height", "300");
-}
-// show img end
-
-//--------------------------------------------------------
-$(".number").on("keypress keyup blur",function (event) {    
-    $(this).val($(this).val().replace(/[^\d].+/, ""));
-    if ((event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
+//這裡呼叫一次"changeCity"這方法，讓瀏覽器在讀完XML後可以直接讓資料出來
+changeCity(document.getElementById("citylist").selectedIndex);
