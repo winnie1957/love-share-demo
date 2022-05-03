@@ -10,5 +10,4 @@ https://www.youtube.com/watch?v=NKIEPIoQUK0
 - Bootstrap 5
 
 軟體應用:
-- Java Development Kit (JDK)
 - MySQL database & MySQL Workbench
