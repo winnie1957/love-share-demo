@@ -32,10 +32,11 @@ public class User implements Serializable {
     public User() {		
 	}
     
-	public User(String uUsername, String uPassword, String uRole) {
+	public User(String uUsername, String uPassword, String uEmail, String uRole) {
 		super();
 		this.uUsername = uUsername;
 		this.uPassword = uPassword;
+		this.uEmail = uEmail;
 		this.uRole = uRole;
 	}
 

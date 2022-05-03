@@ -24,20 +24,21 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h3 class="mb-3 pb-1 border-bottom border-2 text-center">捐贈物資</h3>
-    <form action="" method="post">
+    <form th:action="@{/savegive}" method="post" th:object="${give}">
+<!-- 	  <input type="hidden" th:field="*{gId}" th:value="${give.gId}" /> -->
       <!-- 捐贈項目 -->
       <div class="row mb-3">
         <label for="inputProjectname" class="col-sm-2 col-form-label text-end fw-bold">捐贈物品</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputProjectname" value="電風扇" readonly>
+          <input type="text" class="form-control" th:field="*{gWish}" th:text="${wish.wName}" th:value="${wish.wId}" id="inputProjectname" readonly>
         </div>
       </div>
       <!-- 數量 -->
       <div class="row mb-3">
         <label for="inputQuantity" class="col-sm-2 col-form-label text-end fw-bold">捐贈數量</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" id="inputQuantity" placeholder="如: 1" required>
-          <span class="text-danger">*錯誤訊息*</span>
+          <input type="number" class="form-control" th:field="*{gQuantity}" id="inputQuantity" placeholder="請輸入數字" required>
+<!--           <span class="text-danger">*錯誤訊息*</span> -->
           <!-- <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="button" id="button-min"><i class="fa fa-minus" aria-hidden="true"></i></button>
             <input type="number" class="form-control text-center" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1">
@@ -46,42 +47,41 @@
         </div>
       </div>
       <!-- 捐贈者 -->
-      <div class="row mb-3">
-        <label for="inputDonatePerson" class="col-sm-2 col-form-label text-end fw-bold">捐贈者</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputDonatePerson" placeholder="您的大名" required>
-          <span class="text-danger">*錯誤訊息*</span>
-        </div>
-      </div>
+<!--       <div class="row mb-3"> -->
+<!--         <label for="inputDonatePerson" class="col-sm-2 col-form-label text-end fw-bold">捐贈者</label> -->
+<!--         <div class="col-sm-10"> -->
+<!--           <input type="text" class="form-control" id="inputDonatePerson" placeholder="您的大名" required> -->
+<!--         </div> -->
+<!--       </div> -->
       <!-- 寄送方式 -->
       <fieldset class="row mb-3">
-        <legend class="col-sm-2 col-form-label pt-0 text-end fw-bold">送件方式</legend>
+        <legend class="col-sm-2 col-form-label pt-0 text-end fw-bold">配送方式</legend>
         <div class="col-sm-10">
+          
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" required>
+            <input class="form-check-input" type="radio" th:field="*{gShipping}" name="gridRadios" id="gridRadios1" value="親自送達" required>
             <label class="form-check-label" for="gridRadios1">親自送達</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+            <input class="form-check-input" type="radio" th:field="*{gShipping}" name="gridRadios" id="gridRadios2" value="郵寄">
             <label class="form-check-label" for="gridRadios2">郵寄</label>
           </div>
           <div class="form-check disabled">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+            <input class="form-check-input" type="radio" th:field="*{gShipping}" name="gridRadios" id="gridRadios3" value="新竹物流">
             <label class="form-check-label" for="gridRadios3">新竹物流</label>
           </div>
         </div>
       </fieldset>
       <!-- 留言 -->
       <div class="row mb-3">
-        <label for="textareaDesc" class="col-sm-2 col-form-label text-end fw-bold">留言</label>
+        <label for="textareaContent" class="col-sm-2 col-form-label text-end fw-bold">留言</label>
         <div class="col-sm-10">
-          <textarea class="form-control" id="textareaDesc" rows="5" placeholder="給社福機構的留言"></textarea>
-          <span class="text-danger">*錯誤訊息*</span>
+          <textarea class="form-control" th:field="*{gContent}" id="textareaContent" rows="5" placeholder="給社福機構的留言"></textarea>
         </div>
       </div>
       <!-- 按鈕 -->
-      <div class="float-end">
-        <button class="btn btn-primary rounded-pill px-5 me-2" type="button">取消</button>
+      <div class="float-end mb-5">
+        <a class="btn btn-outline-primary rounded-pill px-5 me-2" th:href="@{'/wish/' + ${wish.wId}}">取消</a>
         <button class="btn btn-primary rounded-pill px-5" type="submit">確認捐贈</button>
       </div>
     </form>

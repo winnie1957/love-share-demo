@@ -30,6 +30,11 @@ public class Category implements Serializable {
 		this.cName = cName;
 	}
 	
+	public Category(String cName, String cCode) {
+		this.cName = cName;
+		this.cCode = cCode;
+	}
+	
 	public Category(Long cId, String cName, int cSort, String cCode) {
 		super();
 		this.cId = cId;

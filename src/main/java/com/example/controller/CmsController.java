@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.model.Category;
+import com.example.model.Give;
 import com.example.model.User;
 import com.example.model.Wish;
-import com.example.repo.CategoryRepository;
-import com.example.repo.UserRepository;
-import com.example.repo.WishRepository;
 import com.example.service.CategoryService;
+import com.example.service.GiveService;
 import com.example.service.UserService;
+import com.example.service.WishService;
 
 @Controller
 public class CmsController {
 
 	@Autowired
-	private WishRepository wishRepo;
-	@Autowired
-	private UserRepository userRepo;
-	@Autowired
 	private UserService userService;
+	@Autowired
+	private WishService wishService;
+	@Autowired
+	private GiveService giveService;
 	@Autowired
 	private CategoryService categoryService;
 	
-	
+
 	@GetMapping("/cms")
 	public String viewCmsIndex() {
 		return "cms/index";
 	}
-	
+		
 //Wish Category-----------------------------------------------------------
 	@GetMapping("/cms/wish/category")
 	public String wishCategoryList(Model model) {		
@@ -60,14 +60,15 @@ public class CmsController {
 	//列表
 	@GetMapping("/cms/wish/wishes")
 	public String CmsWishes(Model model) {
-		List<Wish> wishList = wishRepo.findAll();
+		List<Wish> wishList = wishService.findAll();
 		model.addAttribute("wishList", wishList);
 		return "cms/wishes";
 	}
+	
 	//修改
 	@GetMapping("/cms/wish/edit/{wId}")
 	public String wishFormForEdit(@PathVariable("wId") Long wId, Model model) {
-		Wish wish = wishRepo.findById(wId).get();
+		Wish wish = wishService.get(wId);
 		model.addAttribute("wish", wish);
 
 		List<Category> wishCategoryList = categoryService.listByCode("wish_category");		
@@ -79,7 +80,7 @@ public class CmsController {
 	//修改後回列表
 	@PostMapping("/cms/wish/edit/{wId}")
 	public String wishEdit(Wish wish) {	
-		wishRepo.save(wish);
+		wishService.save(wish);
 		
 		return "redirect:/cms/wish/wishes";
 	}
@@ -87,7 +88,7 @@ public class CmsController {
 	//刪除
 	@GetMapping("/cms/wish/delete/{wId}")
 	public String wishDelete(@PathVariable("wId") Long wId, Model model) {
-		wishRepo.deleteById(wId);
+		wishService.delete(wId);
 
 		return "redirect:/cms/wish/wishes";
 	}
@@ -97,7 +98,7 @@ public class CmsController {
 	//列表
 	@GetMapping("/cms/user/users")
 	public String CmsUsers(Model model) {
-		List<User> userList = userService.listAll();
+		List<User> userList = userService.findAll();
 		model.addAttribute("userList", userList);
 		return "cms/users";
 	}
@@ -125,7 +126,7 @@ public class CmsController {
 	//刪除
 	@GetMapping("/cms/user/delete/{uId}")
 	public String userDelete(@PathVariable("uId") Long uId, Model model) {
-		userRepo.deleteById(uId);
+		userService.delete(uId);
 
 		return "redirect:/cms/user/users";
 	}
@@ -151,7 +152,41 @@ public class CmsController {
 		return "redirect:/cms/user/role";
 	}
 	
-	
+
+//give-----------------------------------------------------------
+	//列表
+	@GetMapping("/cms/give/list")
+	public String viewGiveList(Model model) {
+		List<Give> giveList = giveService.findAll();
+		model.addAttribute("giveList", giveList);
+		
+		return "cms/givelist";
+	}
+		
+	//修改
+	@GetMapping("/cms/give/edit/{gId}")
+	public String viewGiveForm(@PathVariable("gId") Long gId, Model model) {
+		Give give = giveService.get(gId);
+		model.addAttribute("give", give);
+
+		return "cms/give_form";
+	}
+
+	//修改後回列表
+	@PostMapping("/cms/give/edit/{gId}")
+	public String editGive(Give give) {	
+		giveService.save(give);
+		
+		return "redirect:/cms/give/list";
+	}
+		
+	//刪除
+	@GetMapping("/cms/give/delete/{gId}")
+	public String deleteGive(@PathVariable("gId") Long gId, Model model) {
+		giveService.delete(gId);
+
+		return "redirect:/cms/give/list";
+	}
 	
 	
 }

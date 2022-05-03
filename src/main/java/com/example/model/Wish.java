@@ -1,7 +1,6 @@
 package com.example.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,6 +23,8 @@ public class Wish extends Auditable<String> implements Serializable {
 	private String wName;
 	@Column(name = "w_state")
 	private String wState;
+	@Column(name = "w_enabled")
+	private boolean wEnabled;
 	@ManyToOne
 	@JoinColumn(name = "c_id")
 	private Category category;
@@ -30,24 +32,18 @@ public class Wish extends Auditable<String> implements Serializable {
 	private int wQuantity;
 	@Column(name = "w_img")
 	private String wImg;
-	@Column(name = "w_desc")
-	private String wDesc;
+	@ManyToOne
+	@JoinColumn(name = "w_wisher")
+	private User wWisher;
+//	留言
+	@Lob
+	@Column(name = "w_content", columnDefinition = "longtext")
+	private String wContent;
 	
 	
 	
 	public Wish() {
 	}
-
-	public Wish(Long wId, String wName, String wState, Category category, int wQuantity, String wImg, String wDesc) {
-		this.wId = wId;
-		this.wName = wName;
-		this.wState = wState;
-		this.category = category;
-		this.wQuantity = wQuantity;
-		this.wImg = wImg;
-		this.wDesc = wDesc;
-	}
-
 
 	public Long getwId() {
 		return wId;
@@ -97,34 +93,30 @@ public class Wish extends Auditable<String> implements Serializable {
 		this.wImg = wImg;
 	}
 
-	public String getwDesc() {
-		return wDesc;
+	public String getwContent() {
+		return wContent;
 	}
 
-	public void setwDesc(String wDesc) {
-		this.wDesc = wDesc;
+	public void setwContent(String wContent) {
+		this.wContent = wContent;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Wish [wId=");
-		builder.append(wId);
-		builder.append(", wName=");
-		builder.append(wName);
-		builder.append(", wState=");
-		builder.append(wState);
-		builder.append(", category=");
-		builder.append(category);
-		builder.append(", wQuantity=");
-		builder.append(wQuantity);
-		builder.append(", wImg=");
-		builder.append(wImg);
-		builder.append(", wDesc=");
-		builder.append(wDesc);
-		builder.append("]");
-		return builder.toString();
+	public boolean iswEnabled() {
+		return wEnabled;
 	}
+
+	public void setwEnabled(boolean wEnabled) {
+		this.wEnabled = wEnabled;
+	}
+
+	public User getwWisher() {
+		return wWisher;
+	}
+
+	public void setwWisher(User wWisher) {
+		this.wWisher = wWisher;
+	}
+
 
 
 

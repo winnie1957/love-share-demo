@@ -12,7 +12,6 @@ import com.example.model.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	@Query("SELECT c FROM Category c WHERE c.cCode = ?1")
-	 public List<Category> findByCode(String code);
-	
-	
+	public List<Category> findByCode(String code);
+
 }

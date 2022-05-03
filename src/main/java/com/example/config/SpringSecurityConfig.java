@@ -48,7 +48,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/cms**").hasAnyAuthority("admin", "superadmin")
-			.antMatchers("/wish/create", "/user**").hasAuthority("user")
+			.antMatchers("/wish/create", "/user**", "/{wId}/give").hasAnyAuthority("user", "admin", "superadmin")
+//			.antMatchers("/wish/create", "/user**").hasAuthority("user")
 //			.antMatchers("/wish/create", "/cms**", "/user**").authenticated()
 			.anyRequest().permitAll()
 			.and()
@@ -56,7 +57,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/signin")
 				.usernameParameter("uUsername")
 				.passwordParameter("uPassword")
-				.defaultSuccessUrl("/wish/create")
+				//successHandler為關鍵,建立class(LoginSuccessHandle)處理登入後根據不同權限導向不同的頁面的方法
+				.defaultSuccessUrl("/").successHandler(new LoginSuccessHandle()) 
 				.permitAll()
 			.and()
 			.logout().logoutSuccessUrl("/signout").permitAll();

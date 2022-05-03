@@ -24,7 +24,7 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h3 class="mb-3 pb-1 border-bottom border-2 text-center">徵求物資</h3>
-    <form th:action="@{/wish/create}" method="post" th:object="${wish}">
+    <form th:action="@{/savewish_success}" method="post" th:object="${wish}">
 	  <input type="hidden" th:field="*{wId}" th:value="${wish.wId}" />
       <!-- 物品名稱 -->
       <div class="row mb-3">
@@ -77,20 +77,20 @@
       </div>
       <!-- 徵求說明 -->
       <div class="row mb-3">
-        <label for="textareaDesc" class="col-sm-2 col-form-label text-end fw-bold">徵求說明</label>
+        <label for="textareaContent" class="col-sm-2 col-form-label text-end fw-bold">徵求說明</label>
         <div class="col-sm-10">
-          <textarea class="form-control" th:field="*{wDesc}" id="textareaDesc" rows="5" placeholder="請輸入徵求說明" required></textarea>
+          <textarea class="form-control" th:field="*{wContent}" id="textareaContent" rows="5" placeholder="請輸入徵求說明" required></textarea>
         </div>
       </div>
       
       <!-- 按鈕 -->
       <div class="float-end mb-5" th:if="${wish.wId} == null">
-        <button class="btn btn-primary rounded-pill px-5 me-2" type="button">取消</button>
-		<button class="btn btn-primary rounded-pill px-5" type="submit">新增</button>
+        <button class="btn btn-primary rounded-pill px-5 me-2" type="reset">清除</button>
+		<button class="btn btn-primary rounded-pill px-5" type="submit" name="submit_button" value="add">新增</button>
       </div>
       <div class="float-end mb-5" th:unless="${wish.wId} == null">
-        <button class="btn btn-primary rounded-pill px-5 me-2" type="button">取消</button>
-		<button class="btn btn-primary rounded-pill px-5" type="submit">修改</button>
+        <a class="btn btn-primary rounded-pill px-5 me-2" th:href="@{/user/record_wish}">取消</a>
+		<button class="btn btn-primary rounded-pill px-5" type="submit" name="submit_button" value="edit">修改</button>
       </div>
 			
     </form>

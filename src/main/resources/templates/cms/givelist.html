@@ -27,11 +27,9 @@
 		<!-- 標題 -->
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 			<div class="btn-toolbar mb-2 mb-md-0">
-				<!-- <a class="btn btn-primary me-2" th:href="@{/cms/user/users}"><i class="fa fa-chevron-left pe-2" aria-hidden="true"></i>Back List</a> -->
-				<!-- <a class="btn btn-primary" th:href="@{/cms/user/users}"><i class="fa fa-chevron-left pe-2" aria-hidden="true"></i>Back List</a> -->
-				<a class="btn btn-primary" th:href="@{/cms/wish/category}">類別管理</a>
+				<a class="btn btn-primary" href="#">按鈕</a>
 			</div>
-			<h2>Wish - List</h2>
+			<h2>Give - List</h2>
 			<div class="btn-toolbar mb-2 mb-md-0"></div>
 		</div>
 		
@@ -40,44 +38,25 @@
 			<thead class="bg-dark text-white">
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col">Wisher</th>
-					<th scope="col">Category</th>
-					<th scope="col">Name</th>
+					<th scope="col">wisher</th>
+					<th scope="col">wish</th>
 					<th scope="col">State</th>
+					<th scope="col">giver</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="wish: ${wishList}">
-					<th scope="row" valign="middle">[[${wish.wId}]]</th>
-					<td valign="middle">[[${wish.createdBy}]]</th>
-					<td valign="middle">[[${wish.category.cName}]]</th>
-					<td valign="middle">[[${wish.wName}]]</th>
-					<td valign="middle">[[${wish.wState}]]</th>
-					<td valign="middle">[[${wish.wQuantity}]]</th>
+				<tr th:each="give: ${giveList}">
+					<th scope="row" valign="middle">[[${give.gId}]]</th>
+					<td valign="middle">[[${give.gWish.wWisher}]]</th>
+					<td valign="middle">[[${give.gWish.wName}]]</th>
+					<td valign="middle">[[${give.gState}]]</th>
+					<td valign="middle">[[${give.gGiver}]]</th>
+					<td valign="middle">[[${give.gQuantity}]]</th>
 					<td valign="middle">
-						<a class="fs-4 me-3" th:href="@{'/cms/wish/edit/' + ${wish.wId}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-						<!-- 彈出視窗Button trigger modal -->
-					  	<a class="fs-4" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal'+${wish.wId}"><i class="fa fa-trash" aria-hidden="true"></i></a>			  
-						<!-- 彈出視窗Modal -->
-						<div class="modal fade" th:id="deleteModal + ${wish.wId}" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
-							<div class="modal-dialog">
-						    	<div class="modal-content">
-							      	<div class="modal-header">
-								    	<h5 class="modal-title" id="deleteModalLabel">警告</h5>
-								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							        </div>
-							        <div class="modal-body">
-							        	確定要刪除"[[${wish.wName}]]"嗎?
-							        </div>
-							        <div class="modal-footer">
-				              			<a class="btn btn-primary" th:href="@{'/cms/wish/delete/' + ${wish.wId}}">確定</a>
-							        	<a class="btn btn-secondary px-4" data-bs-dismiss="modal">關閉</a>
-							        </div>
-						      	</div>
-						    </div>
-						</div>
+						<a class="fs-4 me-3" th:href="@{'/cms/give/edit/' + ${give.gId}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a class="fs-4" th:href="@{'/cms/give/delete/' + ${give.gId}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>
 			</tbody>

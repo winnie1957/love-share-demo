@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.model.Category;
 import com.example.model.User;
+import com.example.model.Wish;
 import com.example.repo.CategoryRepository;
 import com.example.repo.UserRepository;
 
@@ -28,26 +29,38 @@ public class UserService {
 		
 		userRepo.save(user);	
 	}
-	
+
 	public void save(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encoderPassword = encoder.encode(user.getuPassword());
 		user.setuPassword(encoderPassword);
-				
-		userRepo.save(user);	
+		
+		userRepo.save(user);
 	}
 	
-	public List<User> listAll() {
-		return userRepo.findAll();
+	public void edit(User user) {
+		userRepo.save(user);
 	}
 	
+	public void delete(Long id) {
+		userRepo.deleteById(id);
+	}
+
 	public User get(Long id) {
 		return userRepo.findById(id).get();
+	}
+	
+//	@PreAuthorize("principal.username.equals(#username)")
+	public User findByUserName(String uUsername) {
+	    return userRepo.findByUserName(uUsername);
 	}
 	
 	public List<Category> getRoles(){
 		return categoryRepo.findByCode("role_category");
 	}
-	
-	
+
+	public List<User> findAll() {
+		return userRepo.findAll();
+	}
+
 }

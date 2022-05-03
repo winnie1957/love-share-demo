@@ -32,16 +32,42 @@
         <h3 class="mb-3 pb-1 border-bottom border-2 fw-bold text-center">捐贈紀錄</h3>
         
         <!-- card -->
-        <div class="card bg-light mb-3 border-0">
+        <div class="card bg-light mb-3 border-0" th:each="give: ${giveRecord}">
           <div class="card-body">
-            <h5 class="card-title fw-bold">沙拉油(品牌不限，可高溫烹煮)</h5>
-            <p class="card-subtitle">信望愛中心</p>
-            <p class="card-text">數量：1</p>
-            <p class="card-text text-muted">等待物資中</p>
-            <div class="float-end">
-              <button class="btn btn-primary rounded-pill px-3 me-2" type="submit">取消捐贈</button>
-              <button class="btn btn-primary rounded-pill px-3" type="submit">完成捐贈</button>
-            </div>
+            <h5 class="card-title fw-bold">[[${give.gWish.wName}]]</h5>
+            <p class="card-subtitle">徵求者：[[${give.gWish.createdBy}]]</p>
+            <p class="card-text">捐贈數量：[[${give.gQuantity}]]</p>
+            <p class="card-text text-muted">
+              <span th:if="${give.gEnabled}">狀態：[[${give.gState}]]</span>
+              <span th:unless="${give.gEnabled}">狀態：已取消</span>
+            </p>
+            <!-- 按鈕 -->
+            <div class="float-end" th:if="${give.gEnabled}">
+              <!-- 彈出視窗Button trigger modal -->
+			  <a class="btn btn-outline-secondary rounded-pill px-3 me-2" data-bs-toggle="modal" th:attr="data-bs-target='#cancelModal'+${give.gId}">取消捐贈</a>			  
+			  <!-- 彈出視窗Modal -->
+			  <div class="modal fade" th:id="cancelModal + ${give.gId}" tabindex="-1" aria-labelledby="cancelModal" aria-hidden="true">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <h5 class="modal-title" id="cancelModalLabel">警告</h5>
+			          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			        </div>
+			        <div class="modal-body">
+			          確定要取消捐贈"[[${give.gWish.wName}]]"嗎?
+			        </div>
+			        <div class="modal-footer">
+              		  <a class="btn btn-primary" th:href="@{'/user/cancelgive' + ${give.gId}}">確定</a>
+			          <a class="btn btn-secondary px-4" data-bs-dismiss="modal">關閉</a>
+			        </div>
+			      </div>
+			    </div>
+			  </div>			  
+			  <a class="btn btn-primary rounded-pill px-5" th:href="@{'/user/viewgive' + ${give.gId}}">查看</a>
+            </div>            
+            <div class="float-end" th:unless="${give.gEnabled}">
+              <a class="btn btn-primary rounded-pill px-5" th:href="@{'/user/viewgive' + ${give.gId}}">查看</a>
+            </div>             
           </div>
         </div>
 <!--         card -->
@@ -68,42 +94,6 @@
 <!--             <div class="float-end"> -->
 <!--               <button class="btn btn-primary rounded-pill px-3 me-2" type="button">取消捐贈</button> -->
 <!--               <button class="btn btn-primary rounded-pill px-3" type="submit">完成捐贈</button> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card -->
-<!--         <div class="card bg-light mb-3 border-0"> -->
-<!--           <div class="card-body"> -->
-<!--             <h5 class="card-title fw-bold">尿布墊</h5> -->
-<!--             <p class="card-subtitle">拼圖喵中途之家</p> -->
-<!--             <p class="card-text">數量：1</p> -->
-<!--             <p class="card-text text-muted">已完成捐贈</p> -->
-<!--             <div class="float-end"> -->
-<!--               <a class="btn btn-primary rounded-pill px-3">查看紀錄</a> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card -->
-<!--         <div class="card bg-light mb-3 border-0"> -->
-<!--           <div class="card-body"> -->
-<!--             <h5 class="card-title fw-bold">清潔用75%乙醇</h5> -->
-<!--             <p class="card-subtitle">信望愛中心</p> -->
-<!--             <p class="card-text">數量：10</p> -->
-<!--             <p class="card-text text-muted">已完成捐贈</p> -->
-<!--             <div class="float-end"> -->
-<!--               <a class="btn btn-primary rounded-pill px-3">查看紀錄</a> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card -->
-<!--         <div class="card bg-light mb-3 border-0"> -->
-<!--           <div class="card-body"> -->
-<!--             <h5 class="card-title fw-bold">沐浴乳 1000ml/瓶</h5> -->
-<!--             <p class="card-subtitle">伊甸基金會燕巢家園</p> -->
-<!--             <p class="card-text">數量：15</p> -->
-<!--             <p class="card-text text-muted">已完成捐贈</p> -->
-<!--             <div class="float-end"> -->
-<!--               <a class="btn btn-primary rounded-pill px-3">查看紀錄</a> -->
 <!--             </div> -->
 <!--           </div> -->
 <!--         </div> -->

@@ -57,27 +57,30 @@
             <div class="col-sm-10">15天</div>
           </div>
           <div class="row mb-3">
-            <div class="col-sm-2">送件方式</div>
+            <div class="col-sm-2">配送方式</div>
             <div class="col-sm-10"></div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-2">徵求數量</div>
             <div class="col-sm-10">[[${wish.wQuantity}]]</div>
           </div>
-          <div class="row">
-            <div class="col-sm-2">說明</div>
-            <div class="col-sm-10">[[${wish.wDesc}]]</div>
-          </div>
         </div>
         <div class="float-end mb-5">
           <!-- <button class="btn btn-primary rounded-pill px-5" type="submit">立即捐贈</button> -->
-          <a class="btn btn-primary rounded-pill px-5" th:href="@{/give_form}">立即捐贈</a>
+          <a class="btn btn-primary rounded-pill px-5" th:href="@{'/' + ${wish.wId} + '/give'}">立即捐贈</a>
         </div>
+      </div>
+    </div>
+    <!-- 說明 -->
+    <div>
+      <h4 class="mt-5 pb-2 border-bottom border-2 fw-bold">說明</h4>
+      <div class="mx-3 text-break">
+	    <span>[[${wish.wContent}]]</span>      
       </div>
     </div>
     <!-- 捐贈名單 -->
     <div>
-      <h4 class="my-5 pb-1 border-bottom border-2 fw-bold">捐贈名單</h4>
+      <h4 class="my-5 pb-2 border-bottom border-2 fw-bold">捐贈名單</h4>
 
     </div>
 

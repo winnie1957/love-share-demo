@@ -24,9 +24,23 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="#">捐贈管理</a>
+					<a class="nav-link" aria-current="page" th:href="@{/cms/give/list}">捐贈管理</a>
 				</li>
 			</ul>
+        	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        		<li class="nav-item">
+	              	<a class="nav-link">
+					  <form th:action="@{/logout}" method="post">
+					  <span>Hello!</span>
+					  <b><span sec:authentication="name"></span></b>
+	<!-- 					登入後帳號名稱表現方式1: [[${#request.userPrincipal.name}]] -->
+	<!-- 					登入後帳號名稱表現方式2: <span sec:authentication="name"></span> -->
+	<!-- 					<span sec:authentication="principal.authorities">Role</span> -->
+					  <input type="submit" value="登出" />
+					  </form>
+					</a>              
+            	</li>
+        	</ul>
 			<!-- <form>
 				<input class="form-control" type="text" placeholder="Search" aria-label="Search">
 			</form> -->
