@@ -33,10 +33,13 @@
         <!-- card -->
         <div class="card bg-light mb-3 border-0" th:each="wish: ${wishRecord}">
           <div class="card-body">
-            <h5 class="card-title fw-bold">[[${wish.wName}]]</h5>
+            <h5 class="card-title fw-bold d-flex align-items-center">
+              <span class="me-2">[[${wish.wName}]]</span>
+              <span class="badge text-warning border border-warning" th:text="${wish.wEnabled}?'徵求中':'已取消'"></span>
+            </h5>
             <div class="card-text">
-              <p>徵求情況：<span th:text="${wish.wEnabled}?'徵求中':'已取消徵求'"></span></p>
-              <p>截止時間：</p>
+              <p>開始日期：[[${wish.wStartDate}]]</p>
+              <p>截止日期：[[${wish.wEndDate}]]</p>
               <p>徵求數量：[[${wish.wQuantity}]]</p>
             </div>
             <!-- 按鈕 -->

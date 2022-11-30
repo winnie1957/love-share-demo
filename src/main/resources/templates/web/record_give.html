@@ -34,13 +34,14 @@
         <!-- card -->
         <div class="card bg-light mb-3 border-0" th:each="give: ${giveRecord}">
           <div class="card-body">
-            <h5 class="card-title fw-bold">[[${give.gWish.wName}]]</h5>
-            <p class="card-subtitle">徵求者：[[${give.gWish.createdBy}]]</p>
-            <p class="card-text">捐贈數量：[[${give.gQuantity}]]</p>
-            <p class="card-text text-muted">
-              <span th:if="${give.gEnabled}">狀態：[[${give.gState}]]</span>
-              <span th:unless="${give.gEnabled}">狀態：已取消</span>
-            </p>
+            <h5 class="card-title fw-bold d-flex align-items-center">
+              <span class="me-2">[[${give.gWish.wName}]]</span>
+              <span class="badge text-warning border border-warning" th:text="${give.gEnabled}?'徵求者等待中':'已取消捐贈'"></span>
+            </h5>
+            <p class="card-subtitle mb-3">徵求者：[[${give.gWish.createdBy}]]</p>
+            <div class="card-text">             
+              <p>捐贈數量：[[${give.gQuantity}]]</p>
+            </div>
             <!-- 按鈕 -->
             <div class="float-end" th:if="${give.gEnabled}">
               <!-- 彈出視窗Button trigger modal -->

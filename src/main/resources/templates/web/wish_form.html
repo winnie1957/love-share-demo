@@ -24,24 +24,13 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h3 class="mb-3 pb-1 border-bottom border-2 text-center">徵求物資</h3>
-    <form th:action="@{/savewish_success}" method="post" th:object="${wish}">
+    <form th:action="@{/savewish_success}" method="post" th:object="${wish}" enctype="multipart/form-data">
 	  <input type="hidden" th:field="*{wId}" th:value="${wish.wId}" />
       <!-- 物品名稱 -->
       <div class="row mb-3">
         <label for="inputProjectname" class="col-sm-2 col-form-label text-end fw-bold">物品名稱</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" th:field="*{wName}" id="inputProjectname" placeholder="請輸入物品名稱" required>
-        </div>
-      </div>   
-      <!-- 物品狀態 -->
-      <div class="row mb-3">
-        <label for="inputState" class="col-sm-2 col-form-label text-end fw-bold">物品狀態</label>
-        <div class="col-sm-10">
-          <select class="form-select" th:field="*{wState}" id="selectState" aria-label="Default select example">
-            <option value="全新或二手皆可" selected>全新或二手皆可</option>
-            <option value="全新">全新</option>
-            <option value="二手">二手</option>
-          </select>
         </div>
       </div>   
       <!-- 物品分類 -->
@@ -54,11 +43,34 @@
           </select>
         </div>
       </div>   
-      <!-- 數量 -->
       <div class="row mb-3">
+      </div>   
+      <div class="row mb-3">
+        <!-- 物品狀態 -->
+        <label for="inputState" class="col-sm-2 col-form-label text-end fw-bold">物品狀態</label>
+        <div class="col-sm-4">
+          <select class="form-select" th:field="*{wState}" id="selectState" aria-label="Default select example">
+            <option value="全新或二手皆可" selected>全新或二手皆可</option>
+            <option value="全新">全新</option>
+            <option value="二手">二手</option>
+          </select>
+        </div>
+	    <!-- 開始日期 -->
+        <label for="input-startdate" class="col-sm-2 col-form-label text-end fw-bold">開始日期</label>
+        <div class="col-sm-4">
+          <input type="date" class="form-control" th:field="*{wStartDate}" id="input-startdate" placeholder="請輸入開始日期" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+      	<!-- 數量 -->
         <label for="inputQuantity" class="col-sm-2 col-form-label text-end fw-bold">徵求的數量</label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
           <input type="number" class="form-control" th:field="*{wQuantity}" id="inputQuantity" placeholder="請輸入數量" required>
+        </div>
+	    <!-- 結束日期 -->
+        <label for="input-enddate" class="col-sm-2 col-form-label text-end fw-bold">結束日期</label>
+        <div class="col-sm-4">
+          <input type="date" class="form-control" th:field="*{wEndDate}" id="input-enddate" placeholder="請輸入結束日期" required>
         </div>
       </div>
       <!-- 圖片 -->
@@ -67,9 +79,13 @@
         <div class="col-sm-10">
           <div class="border rounded py-3">
             <!-- <form action="/somewhere/to/upload" enctype="multipart/form-data"> -->
-              <input type="file" id="fileImage" onclick="myFunction()" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/>
+<!--               <input type="file" id="fileImage" onclick="myFunction()" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/> -->
+<!--               <div class="imgShape" id="restrictImg"> -->
+<!--                 <img id="preview_progressbarTW_img" src="#" style="width: 100%;height: 100%;"/> -->
+<!--               </div> -->
+			  <input type="file" id="fileImage" name="fileImage" onclick="myFunction()" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/> -->
               <div class="imgShape" id="restrictImg">
-                <img id="preview_progressbarTW_img" src="#" style="width: 100%;height: 100%;"/>
+                <img class="w-25" id="preview_progressbarTW_img" src="#"/>
               </div>
             <!-- </form> -->
           </div>

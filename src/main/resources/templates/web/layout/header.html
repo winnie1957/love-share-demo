@@ -30,33 +30,41 @@
           <!-- 搜尋 -->
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="dropdown_search" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-search" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown_search">
-              <form class="d-flex input-group" aria-labelledby="dropdown_search">
-                <input type="text" class="form-control" placeholder="search..." aria-label="" aria-describedby="search">
-                <button class="btn btn-outline-secondary" type="button" id="Search"><i class="fa fa-search" aria-hidden="true"></i></button>
-              </form>              
-            </ul>
+<!--             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown_search"> -->
+<!--               <form class="d-flex input-group" aria-labelledby="dropdown_search"> -->
+<!--                 <input type="text" class="form-control" placeholder="search..." aria-label="" aria-describedby="search"> -->
+<!--                 <button class="btn btn-outline-secondary" type="button" id="Search"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+<!--               </form>               -->
+<!--             </ul> -->
           </li>
           <!-- 會員 -->
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="dropdown_user" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#" id="dropdown_user" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              <span class="fw-bold ps-2" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+            </a>
             <ul class="dropdown-menu dropdown-menu-end" sec:authorize="isAuthenticated()" aria-labelledby="dropdown_user">
-              <li>
-              	<a class="dropdown-item">
-				  <form th:action="@{/logout}" method="post">
-				  <span>Hello!</span>
-				  <b><span sec:authentication="name"></span></b>
+<!--               <li> -->
+<!--               	<a class="dropdown-item"> -->
+<!-- 				  <form th:action="@{/logout}" method="post"> -->
+<!-- 				    <span>Hello!</span> -->
+<!-- 				    <b><span sec:authentication="name"></span></b> -->
 <!-- 					登入後帳號名稱表現方式1: [[${#request.userPrincipal.name}]] -->
 <!-- 					登入後帳號名稱表現方式2: <span sec:authentication="name"></span> -->
 <!-- 					<span sec:authentication="principal.authorities">Role</span> -->
-				  <input type="submit" value="登出" />
-				  </form>
-				</a>              
-              </li>
+<!-- 				    <input type="submit" value="登出" /> -->
+<!-- 				  </form> -->
+<!-- 				</a>               -->
+<!--               </li> -->
               <li sec:authorize="hasAuthority('user')"><a class="dropdown-item" th:href="@{/user/profile}">會員專頁</a></li>
               <li sec:authorize="hasAuthority('user')"><a class="dropdown-item" th:href="@{/user/record_give}">捐贈紀錄</a></li>
               <li sec:authorize="hasAuthority('user')"><a class="dropdown-item" th:href="@{/user/record_wish}">徵求記錄</a></li>
               <li sec:authorize="hasAuthority('admin')"><a class="dropdown-item" th:href="@{/cms}">後臺管理</a></li>
+              <li>
+				<form th:action="@{/logout}" method="post">
+				  <button class="dropdown-item" type="submit">登出</button>
+				</form>
+              </li>
             </ul>
             <ul class="dropdown-menu dropdown-menu-end" sec:authorize="!isAuthenticated()" aria-labelledby="dropdown_user">
               <li><a class="dropdown-item" th:href="@{/signup}">註冊</a></li>

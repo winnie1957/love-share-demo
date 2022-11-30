@@ -23,14 +23,14 @@ public class Give extends Auditable<String> implements Serializable {
 	@Column(name = "g_state")
 	private String gState;
 	@Column(name = "g_enabled")
-	private boolean gEnabled;
+	private Boolean gEnabled;
 //	徵求案件
 	@ManyToOne
 	@JoinColumn(name = "g_wish_id", nullable = false)
 	private Wish gWish;
 //	捐贈數量
 	@Column(name = "g_quantity", nullable = false)
-	private int gQuantity;
+	private Integer gQuantity;
 //	配送方式
 	@Column(name="g_shipping", nullable = false)
 	private String gShipping;
@@ -86,12 +86,12 @@ public class Give extends Auditable<String> implements Serializable {
 	}
 
 
-	public int getgQuantity() {
+	public Integer getgQuantity() {
 		return gQuantity;
 	}
 
 
-	public void setgQuantity(int gQuantity) {
+	public void setgQuantity(Integer gQuantity) {
 		this.gQuantity = gQuantity;
 	}
 
@@ -122,11 +122,11 @@ public class Give extends Auditable<String> implements Serializable {
 		this.gGiver = gGiver;
 	}
 
-	public boolean isgEnabled() {
+	public Boolean isgEnabled() {
 		return gEnabled;
 	}
 
-	public void setgEnabled(boolean gEnabled) {
+	public void setgEnabled(Boolean gEnabled) {
 		this.gEnabled = gEnabled;
 	}
 

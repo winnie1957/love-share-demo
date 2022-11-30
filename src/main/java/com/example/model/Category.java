@@ -19,7 +19,7 @@ public class Category implements Serializable {
 	@Column(name = "c_name", nullable = false)
 	private String cName;
 	@Column(name = "c_sort")
-	private int cSort;
+	private Integer cSort;
 	@Column(name = "c_code")
 	private String cCode;
 	
@@ -35,7 +35,7 @@ public class Category implements Serializable {
 		this.cCode = cCode;
 	}
 	
-	public Category(Long cId, String cName, int cSort, String cCode) {
+	public Category(Long cId, String cName, Integer cSort, String cCode) {
 		super();
 		this.cId = cId;
 		this.cName = cName;
@@ -59,11 +59,11 @@ public class Category implements Serializable {
 		this.cName = cName;
 	}
 
-	public int getcSort() {
+	public Integer getcSort() {
 		return cSort;
 	}
 
-	public void setcSort(int cSort) {
+	public void setcSort(Integer cSort) {
 		this.cSort = cSort;
 	}
 

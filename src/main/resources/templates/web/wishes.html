@@ -26,144 +26,22 @@
   <div class="row">
     <div class="col-sm-2">
       <!-- 選單 -->
-      <h5>排序方式</h5>
-      <hr>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          刊登時間：新到舊
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          刊登時間：舊到新
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          剩餘天數：少到多
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          剩餘天數：多到少
-        </label>
-      </div>
-      
+      <nav class="nav flex-column">
+        <h5 class="nav-link pb-1 border-bottom border-2 fw-bold text-dark">分類</h5>        
+        <a class="nav-link" aria-current="page" th:field="*{category}" th:each="category: ${wishCategoryList}" th:text="${category.cName}" href=""></a>
+      </nav>
+           
       
     </div>
     <div class="col-sm-10">
       <!-- 內容 -->
       <div class="row row-cols-1 row-cols-md-4 g-4">
-<!--         card-1 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=1" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body"> -->
-<!--               <p class="card-title fw-bold text-truncate "><a th:href="@{/wish}" class="stretched-link">沐浴乳 1000ml/瓶</a></p> -->
-<!--               <p class="card-text">伊甸基金會燕巢家園</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="31" aria-valuemin="0" aria-valuemax="50"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">31/50</span> -->
-<!--                 <span class="float-end">剩餘15天</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card-2 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=2" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body"> -->
-<!--               <p class="card-title fw-bold text-truncate"><a th:href="@{/wish}"  class="stretched-link">沙拉油(品牌不限，可高溫烹煮)</a></p> -->
-<!--               <p class="card-text">信望愛中心</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 62%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">31/50</span> -->
-<!--                 <span class="float-end">已結束</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card-3 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=3" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body"> -->
-<!--               <p class="card-title fw-bold text-truncate"><a th:href="@{/wish}"  class="stretched-link">貓砂</a></p> -->
-<!--               <p class="card-text">拼圖喵中途之家</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 68%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">31/50</span> -->
-<!--                 <span class="float-end">剩餘8天</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card-4 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=4" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body"> -->
-<!--               <p class="card-title fw-bold text-truncate"><a th:href="@{/wish}"  class="stretched-link">清潔用75%乙醇</a></p> -->
-<!--               <p class="card-text">信望愛中心</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">31/50</span> -->
-<!--                 <span class="float-end">剩餘14天</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card-5 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=5" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body">  -->
-<!--               <p class="card-title fw-bold text-truncate"><a th:href="@{/wish}"  class="stretched-link">尿布墊</a></p> -->
-<!--               <p class="card-text">拼圖喵中途之家</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">31/50</span> -->
-<!--                 <span class="float-end">剩餘30天</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         card-6 -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <img src="https://picsum.photos/150?random=6" class="card-img-top" alt="..."> -->
-<!--             <div class="card-body"> -->
-<!--               <p class="card-title fw-bold text-truncate"><a th:href="@{/wish}"  class="stretched-link">幫社工免費上英文課的志工老師</a></p> -->
-<!--               <p class="card-text">臺北市政府社會局內湖社會福利服務中心</p> -->
-<!--               <div class="progress mt-3"> -->
-<!--                 <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!--               </div> -->
-<!--               <p class="card-text mt-2"> -->
-<!--                 <span class="float-start">0/1</span> -->
-<!--                 <span class="float-end">剩餘8天</span> -->
-<!--               </p> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
         <!-- card -->
         <div class="col" th:each="wish: ${wishList}">
           <div class="card">
-            <img src="https://picsum.photos/150?random=6" class="card-img-top" alt="...">
+<!--             <img src="https://picsum.photos/150?random=6" class="card-img-top" alt="..."> -->
+<!-- 			<img th:src="@{${wish.WishImgPath}}" class="card-img-top" alt="..."> -->
+			<img src="c://wish-photos/12/126016672_2400594736731730_3485380276761447197_n.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-title fw-bold text-truncate"><a th:href="@{'/wish/' + ${wish.wId}}"  class="stretched-link">[[${wish.wName}]]</a></p>
               <p class="card-text">[[${wish.createdBy}]]</p>
@@ -172,7 +50,7 @@
               </div>
               <p class="card-text mt-2">
                 <span class="float-start">0/[[${wish.wQuantity}]]</span>
-                <span class="float-end">剩餘天數</span>
+<!--                 <span class="float-end">剩餘天</span> -->
               </p>
             </div>
           </div>

@@ -27,7 +27,7 @@ public class User implements Serializable {
 	@Column(name = "u_role")
 	private String uRole;
     @Column(name = "u_enabled")
-    private boolean uEnabled;
+    private Boolean uEnabled;
 	
     public User() {		
 	}
@@ -88,11 +88,11 @@ public class User implements Serializable {
 		this.uRole = uRole;
 	}
 
-	public boolean isuEnabled() {
+	public Boolean isuEnabled() {
 		return uEnabled;
 	}
 
-	public void setuEnabled(boolean uEnabled) {
+	public void setuEnabled(Boolean uEnabled) {
 		this.uEnabled = uEnabled;
 	}
 

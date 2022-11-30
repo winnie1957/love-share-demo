@@ -30,14 +30,16 @@
       <div class="row mb-3">
         <label for="inputProjectname" class="col-sm-2 col-form-label text-end fw-bold">捐贈物品</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" th:field="*{gWish}" th:text="${wish.wName}" th:value="${wish.wId}" id="inputProjectname" readonly>
+	  <input type="hidden"  th:field="*{gWish}" th:value="${wish.wId}" />
+<!--           <input type="text" class="form-control" th:field="*{gWish}" th:text="${wish.wName}" th:value="${wish.wId}" id="inputProjectname" readonly> -->
+          <input type="text" class="form-control" th:value="${wish.wName}" id="input-wishname" readonly>
         </div>
       </div>
       <!-- 數量 -->
       <div class="row mb-3">
         <label for="inputQuantity" class="col-sm-2 col-form-label text-end fw-bold">捐贈數量</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" th:field="*{gQuantity}" id="inputQuantity" placeholder="請輸入數字" required>
+          <input type="number" class="form-control" th:field="*{gQuantity}" id="input-quantity" placeholder="請輸入數字" required>
 <!--           <span class="text-danger">*錯誤訊息*</span> -->
           <!-- <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="button" id="button-min"><i class="fa fa-minus" aria-hidden="true"></i></button>

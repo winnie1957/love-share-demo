@@ -1,16 +1,22 @@
 package com.example.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Date; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.model.Category;
 import com.example.model.Give;
@@ -94,8 +100,19 @@ public class WebController {
 	@GetMapping("/wishes")
 	public String WishList(Model model) {		
 		List<Wish> wishList = wishService.findAllEnabled();
-		model.addAttribute("wishList", wishList);	
+		model.addAttribute("wishList", wishList);		
+		List<Category> wishCategoryList = categoryService.listByCode("wish_category");
+		model.addAttribute("wishCategoryList", wishCategoryList);
 		
+//		DateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date startDate = simpleFormat.parse("2021-03-01");
+//        Date endDate = simpleFormat.parse("2021-07-08");
+//        long startTime = startDate.getTime();
+//        long endTime = endDate.getTime();
+//        int days = (int) ((endTime - startTime) / (1000 * 60 * 60 * 24));
+//        System.out.println("兩個時間之間的天數間隔為：" + days);
+		
+			
 		return "web/wishes";
 	}	
 	
@@ -109,14 +126,27 @@ public class WebController {
 		return "web/wish_form";
 	}
 	
+//	//新增後回列表
+//    @RequestMapping(value = {"/savewish_success"}, method = RequestMethod.POST, params="submit_button=add")
+//	public String createWish(Wish wish) {
+//		wishService.save(wish);
+//		
+//		return "redirect:/wishes";
+//	}
+
 	//新增後回列表
     @RequestMapping(value = {"/savewish_success"}, method = RequestMethod.POST, params="submit_button=add")
-	public String createWish(Wish wish) {
-		wishService.save(wish);
+	public String createWish(Wish wish, @RequestParam("fileImage") MultipartFile imageFile) throws IOException {
+    	 String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+         wish.setwImg(fileName);
+         wishService.save(wish);
+         String uploadDir = "/wish-photos/" + wish.getwId();
+         FileUploadUtil.saveFile(uploadDir, fileName, imageFile);
+//         return new RedirectView("/users", true);
 		
 		return "redirect:/wishes";
 	}
-	
+    
 	//取得該項目
 	@GetMapping("/wish/{wId}")
 	public String WishDetail(@PathVariable("wId") Long wId, Model model) {
@@ -157,14 +187,20 @@ public class WebController {
 	public String editWishForm(@PathVariable("wId") Long wId, Model model) {
 		Wish wish = wishService.get(wId);
 		model.addAttribute("wish", wish);
+		List<Category> wishCategoryList = categoryService.listByCode("wish_category");
+		model.addAttribute("wishCategoryList", wishCategoryList);
 		
 		return "web/wish_form";
 	}
 	
 	//編輯後回列表
     @RequestMapping(value = {"/savewish_success"}, method = RequestMethod.POST, params="submit_button=edit")
-	public String editWish(Wish wish) {	
-		wishService.edit(wish);
+	public String editWish(Wish wish, @RequestParam("fileImage") MultipartFile imageFile) throws IOException {	
+    	String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+        wish.setwImg(fileName);
+        wishService.edit(wish);
+        String uploadDir = "/wish-photos/" + wish.getwId();
+        FileUploadUtil.saveFile(uploadDir, fileName, imageFile);
 		
 		return "redirect:/user/record_wish";
 	}

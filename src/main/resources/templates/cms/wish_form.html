@@ -42,26 +42,42 @@
 				<!-- ID -->
 				<label class="col-sm-2 col-form-label">ID</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" th:field="*{wId}" th:value="${wish.wId}" readonly/>
+					<input type="text" class="form-control" th:field="*{wId}" th:value="${wish.wId}" readonly/>
 				</div>
+				<!-- StartDate -->
+				<label class="col-sm-2 col-form-label">StartDate</label>
+				<div class="col-sm-4">
+					<input type="date" class="form-control" th:field="*{wStartDate}" th:value="${wish.wStartDate}"/>
+				</div>
+			</div>
+			<div class="row mb-3">
 				<!-- State -->
 				<label class="col-sm-2 col-form-label">State</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" th:field="*{wState}" required/>
+					<select class="form-select" th:field="*{wState}" required>
+						<option value="全新或二手皆可">全新或二手皆可</option>
+						<option value="全新">全新</option>
+						<option value="二手">二手</option>
+					</select>
+				</div>
+				<!-- EndDate -->
+				<label class="col-sm-2 col-form-label">EndDate</label>
+				<div class="col-sm-4">
+					<input type="date" class="form-control" th:field="*{wEndDate}" th:value="${wish.wEndDate}"/>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<!-- User -->
 				<label class="col-sm-2 col-form-label">User</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" th:field="*{createdBy}" th:value="${wish.createdBy}" readonly/>
+					<input type="text" class="form-control" th:field="*{createdBy}" th:value="${wish.createdBy}" readonly/>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<!-- Name -->
 				<label class="col-sm-2 col-form-label">Name</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" th:field="*{wName}" required/>
+					<input type="text" class="form-control" th:field="*{wName}" required/>
 				</div>
 			</div>
 			<div class="row mb-3">
@@ -69,14 +85,13 @@
 				<label class="col-sm-2 col-form-label">Category</label>
 				<div class="col-sm-6">
 					<select class="form-select" th:field="*{category}" required>
-<!-- 						<option value="">請選擇物品分類</option> -->
 						<option th:each="category: ${wishCategoryList}" th:text="${category.cName}" th:value="${category.cId}"></option>
 					</select>
 				</div>
 				<!-- Quantity -->
 				<label class="col-sm-2 col-form-label">Quantity</label>
 				<div class="col-sm-2">
-				<input type="number" class="form-control" th:field="*{wQuantity}" required/>
+					<input type="number" class="form-control" th:field="*{wQuantity}" required/>
 				</div>
 			</div>
 			<div class="row mb-3">
@@ -84,7 +99,7 @@
 				<label class="col-sm-2 col-form-label">Content</label>
 				<div class="col-sm-10">
 				<!-- <input type="text" class="form-control" th:field="*{wContent}" required/> -->
-				<textarea class="form-control" th:field="*{wContent}" name="" id="" cols="30" rows="5" required></textarea>
+					<textarea class="form-control" th:field="*{wContent}" name="" id="" cols="30" rows="5" required></textarea>
 				</div>
 			</div>
 			
